@@ -79,6 +79,10 @@ class OpenSubtitles(MainOperations):
             # Unexpected page
             print('Unexpected page type')
 
+    def reset_process(self):
+        with open(f'{self.args.save_process_path}/process.json', 'w') as file:
+            file.write('')
+
     def execute(self, counter=0):
             """
             Downloads subtitles for the given imdb_id(s) by parsing the corresponding web pages on OpenSubtitles.
@@ -93,6 +97,10 @@ class OpenSubtitles(MainOperations):
                 Exception: If the webdriver cannot be started or if there is an error while downloading or parsing the subtitle.
             """
             
+            # Check if process restarted
+            if self.args.save_process_path:
+                self.reset_process()
+
             # Check if imdb_id has single element or multiple elements
             if len(self.args.imdb_id) > 1:
                 # If length is more than 1 it should be continued from last downloaded subtitle
