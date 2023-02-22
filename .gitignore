@@ -2,3 +2,4 @@ Pipfile*
 *__pycache__*
 dump/*
 test
+process.json
