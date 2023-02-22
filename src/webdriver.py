@@ -2,6 +2,7 @@
 
 import os
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 class Driver:
     """A class for initializing a Selenium webdriver based on the Chrome browser and managing download paths for subtitles.
@@ -71,4 +72,5 @@ class Driver:
         options.add_experimental_option('prefs', prefs)
 
         # Create and return a Chrome WebDriver instance
-        return webdriver.Chrome(options=options)
+        # Create and return a Chrome WebDriver instance
+        return webdriver.Chrome(options=options, executable_path=ChromeDriverManager().install())
