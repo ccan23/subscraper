@@ -32,6 +32,7 @@ class ParseResult:
         
         return wrapper
 
+    @property
     @handle_no_such_element
     def movie_name(self) -> str:
         """Get the name of the movie
