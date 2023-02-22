@@ -33,7 +33,7 @@ group_download.add_argument('--change_file_names', action='store_true', help='Ch
 # Add arguments for group process
 group_main.add_argument('--save_process', action='store_true', help='Save which movie were downloaded in a JSON file')
 group_main.add_argument('--save_process_path', type=str, default='process', help='Specify the path where to save the JSON file')
-group_main.add_argument('--reset_process', type=bool, default=True, help='Reset process')
+group_main.add_argument('--reset_process', type=bool, default=False, help='Reset process')
 
 # Parse the arguments
 args = parser.parse_args()

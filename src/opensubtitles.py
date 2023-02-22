@@ -96,16 +96,16 @@ class OpenSubtitles(MainOperations):
             Raises:
                 Exception: If the webdriver cannot be started or if there is an error while downloading or parsing the subtitle.
             """
-            
+
             # Check if process restarted
-            if self.args.save_process_path:
+            if self.args.reset_process:
                 self.reset_process()
 
             # Check if imdb_id has single element or multiple elements
             if len(self.args.imdb_id) > 1:
                 # If length is more than 1 it should be continued from last downloaded subtitle
                 # so get the index of last downloaded subtitle and continue from it.
-                downloaded_list = MainOperations.last_movie(self.process_path)
+                downloaded_list = self.last_movie(self.process_path)
                 if downloaded_list:
                     counter = downloaded_list['index'] + 1
                 else:
@@ -140,7 +140,6 @@ class OpenSubtitles(MainOperations):
                     # Check if CAPTCHA has been detected
                     if self.detect_captcha():
                         print('Warning: Caught by CAPTCHA. Restarting..')
-                        del self.args.imdb_id
                         self.driver.quit()
                         self.execute(counter=counter)
 
